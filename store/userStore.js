@@ -12,6 +12,8 @@ export const useUsersStore = defineStore("users", () => {
     );
 
     if (error.value) errors.value = error.value;
+    console.log("error:", error.value);
+
     users.value = data.value;
   }
   // getter (computed)
