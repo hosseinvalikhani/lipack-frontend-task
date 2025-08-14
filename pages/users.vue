@@ -54,3 +54,5 @@ getUsers();
 <!-- user list -->
 <!-- empty user -->
 <!-- list of user -->
+
+<!-- create router link to route to the users page -->
