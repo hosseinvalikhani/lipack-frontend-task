@@ -11,11 +11,6 @@ function resetSearch() {
     <icons-empty-search-icon class="w-40 h-40 text-gray-500 mb-4" />
     <h2 class="text-xl text-gray-900">No matching users found</h2>
     <p class="mb-3 text-gray-800">Try a different search term.</p>
-    <button
-      class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-      @click="resetSearch"
-    >
-      Reset Search
-    </button>
+    <BaseButton label="Reset Search" @click="resetSearch" />
   </div>
 </template>

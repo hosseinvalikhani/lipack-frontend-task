@@ -22,8 +22,8 @@ const initialsAvatar = computed(() =>
 
 <template>
   <div
-    class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-white font-bold text-lg"
+    class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center text-white font-bold text-lg"
   >
-    <p class="text-neutral-700">{{ initialsAvatar }}</p>
+    <p class="text-white">{{ initialsAvatar }}</p>
   </div>
 </template>

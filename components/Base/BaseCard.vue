@@ -17,7 +17,7 @@ const props = defineProps({
 
 <template>
   <div
-    class="w-full h-full rounded-2xl p-6 border border-gray-200 hover:border-gray-900 duration-300 hover:shadow-lg hover:bg-blue-100"
+    class="w-full h-full bg-white rounded-2xl p-6 border border-gray-300 hover:border-gray-900 duration-300 hover:shadow-lg"
   >
     <!-- Avatar -->
     <div class="flex justify-center mb-4">
@@ -25,7 +25,7 @@ const props = defineProps({
     </div>
 
     <!-- User Info -->
-    <div class="flex flex-col gap-3 items-start mx-auto w-fit max-w-80">
+    <div class="flex flex-col gap-3 items-start mx-auto w-fit max-w-xs">
       <p class="text-gray-900">
         <span class="font-semibold text-gray-700">Name: </span>{{ name }}
       </p>
