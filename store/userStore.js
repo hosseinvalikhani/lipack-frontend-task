@@ -1,22 +1,32 @@
 import { defineStore } from "pinia";
+import { useUsersApi } from "~/composable/useUsersApi";
+
 export const useUsersStore = defineStore("users", () => {
-  // state
-  const users = ref();
-  const errors = ref();
+  // State
+  const users = ref([]);
+  const error = ref(null);
+  const loading = ref(false);
   const searchTerm = ref("");
 
-  // actions
+  // Actions
+  const { getAllUsers } = useUsersApi();
+
   async function fetchUsers() {
-    const { data, status, error } = await useFetch(
-      "https://jsonplaceholder.typicode.com/users"
-    );
-
-    if (error.value) errors.value = error.value;
-    console.log("error:", error.value);
-
-    users.value = data.value;
+    loading.value = true;
+    error.value = null;
+    try {
+      const data = await getAllUsers();
+      users.value = data || [];
+      return data;
+    } catch (err) {
+      error.value = err.message;
+      console.error("Fetch error:", err);
+    } finally {
+      loading.value = false;
+    }
   }
-  // getter (computed)
+
+  // Getter (computed)
   const filteredUsers = computed(() => {
     if (!searchTerm.value.trim()) return users.value;
     const term = searchTerm.value.toLowerCase();
@@ -25,9 +35,10 @@ export const useUsersStore = defineStore("users", () => {
 
   return {
     users,
-    errors,
-    fetchUsers,
+    error,
+    loading,
     searchTerm,
     filteredUsers,
+    fetchUsers,
   };
 });
