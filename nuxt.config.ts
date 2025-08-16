@@ -8,4 +8,13 @@ export default defineNuxtConfig({
       apiBaseUrl: "https://jsonplaceholder.typicode.com",
     },
   },
+  app: {
+    head: {
+      title: "Lipack Frontend Task",
+      htmlAttrs: {
+        lang: "en",
+      },
+      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    },
+  },
 });

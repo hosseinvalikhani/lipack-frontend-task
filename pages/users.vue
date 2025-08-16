@@ -3,8 +3,7 @@ import { useUsersStore } from "~/store/userStore";
 import { storeToRefs } from "pinia";
 
 const userStore = useUsersStore();
-const { users, loading, error, filteredUsers, searchTerm } =
-  storeToRefs(userStore);
+const { loading, error, searchedUsers, searchTerm } = storeToRefs(userStore);
 
 // SSR-friendly fetch with callOnce to avoid duplicates and side-effect issues
 await useAsyncData("users", () =>
@@ -37,19 +36,13 @@ await useAsyncData("users", () =>
     <!-- User list -->
     <div v-else>
       <div
-        v-if="users.length === 0"
-        class="min-h-[calc(100vh-12rem)] flex items-center justify-center"
-      >
-        <UsersEmptyUsersView />
-      </div>
-      <div
-        v-else-if="filteredUsers.length === 0"
+        v-if="searchedUsers.length === 0"
         class="min-h-[calc(100vh-12rem)] flex items-center justify-center"
       >
         <UsersEmptySearchView />
       </div>
       <ul v-else class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <li v-for="user in filteredUsers" :key="user.id">
+        <li v-for="user in searchedUsers" :key="user.id">
           <BaseCard
             :name="user.name"
             :email="user.email"

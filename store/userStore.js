@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { useUsersApi } from "~/composable/useUsersApi";
+import { useUsersApi } from "~/composables/useUsersApi";
 
 export const useUsersStore = defineStore("users", () => {
   // State
@@ -27,7 +27,8 @@ export const useUsersStore = defineStore("users", () => {
   }
 
   // Getter (computed)
-  const filteredUsers = computed(() => {
+  const searchedUsers = computed(() => {
+    if (!searchTerm.value.trim()) return users.value;
     const term = searchTerm.value.toLowerCase();
     return users.value.filter((user) => user.name.toLowerCase().includes(term));
   });
@@ -37,7 +38,7 @@ export const useUsersStore = defineStore("users", () => {
     error,
     loading,
     searchTerm,
-    filteredUsers,
+    searchedUsers,
     fetchUsers,
   };
 });
