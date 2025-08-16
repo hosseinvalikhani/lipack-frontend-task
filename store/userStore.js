@@ -28,7 +28,6 @@ export const useUsersStore = defineStore("users", () => {
 
   // Getter (computed)
   const filteredUsers = computed(() => {
-    if (!searchTerm.value.trim()) return users.value;
     const term = searchTerm.value.toLowerCase();
     return users.value.filter((user) => user.name.toLowerCase().includes(term));
   });
